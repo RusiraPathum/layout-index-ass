@@ -1,5 +1,6 @@
-import express from "express";
-import mysql from "mysql";
+const express = require("express");
+const mysql = require("mysql");
+const categoryRoutes = require("./routes/categoryRoutes");
 
 const app = express();
 
@@ -7,13 +8,12 @@ const app = express();
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "rp19970520",
+    password: "rp1997050",
     database: "layout_index_ass"
 })
 
-app.get("/book" , (req,res)=>{
-    res.json("Hellow");
-});
+//Category route
+app.use('/api/category', categoryRoutes);
 
 app.listen(8800, ()=>{
     console.log("Connected 0")
