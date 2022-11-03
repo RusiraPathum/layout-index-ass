@@ -1,20 +1,16 @@
 const express = require("express");
-const mysql = require("mysql");
 const categoryRoutes = require("./routes/categoryRoutes");
+const subCategoryRoutes = require("./routes/subCategoryRoutes");
 
 const app = express();
-
-//Database Connection
-const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "rp1997050",
-    database: "layout_index_ass"
-})
+app.use(express.json());
 
 //Category route
 app.use('/api/category', categoryRoutes);
 
+//Sub Category route
+app.use('/api/subCategory', subCategoryRoutes);
+
 app.listen(8800, ()=>{
-    console.log("Connected 0")
+    console.log("Backend server is running!");
 });
