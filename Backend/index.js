@@ -1,20 +1,16 @@
-import express from "express";
-import mysql from "mysql";
+const express = require("express");
+const categoryRoutes = require("./routes/categoryRoutes");
+const subCategoryRoutes = require("./routes/subCategoryRoutes");
 
 const app = express();
+app.use(express.json());
 
-//Database Connection
-const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "rp19970520",
-    database: "layout_index_ass"
-})
+//Category route
+app.use('/api/category', categoryRoutes);
 
-app.get("/book" , (req,res)=>{
-    res.json("Hellow");
-});
+//Sub Category route
+app.use('/api/subCategory', subCategoryRoutes);
 
 app.listen(8800, ()=>{
-    console.log("Connected 0")
+    console.log("Backend server is running!");
 });
