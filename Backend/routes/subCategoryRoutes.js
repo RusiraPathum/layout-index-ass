@@ -13,11 +13,12 @@ router.get("/categoryList", (req, res) => {
 
 //sub category list
 router.get("/subCategoryList", (req, res) => {
-  const query = "SELECT * FROM subCategory";
+  const query = "SELECT sc.idsubCategory, sc.name,c.name as subName, sc.description FROM subCategory sc INNER JOIN category c ON sc.categoryId = c.id";
 
   db.query(query, (err, data) => {
     if (err) return res.json(err);
     return res.json(data);
+  
   });
 });
 
@@ -27,6 +28,8 @@ router.post("/create", (req, res) => {
     "INSERT INTO subCategory (`name`, `description`, `categoryId`) VALUES (?)";
 
   const data = [req.body.name, req.body.des, req.body.catId];
+
+  // console.log(data);
 
   db.query(query, [data], (err, data) => {
     if (err) return res.json(err);

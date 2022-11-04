@@ -3,10 +3,12 @@ const categoryRoutes = require("./routes/categoryRoutes");
 const subCategoryRoutes = require("./routes/subCategoryRoutes");
 const productRoutes = require("./routes/productRoutes");
 const fileUpload = require("express-fileupload");
+const cors = require('cors');
 
 const app = express();
 app.use(express.json());
 app.use(fileUpload());
+app.use(cors());
 
 //Category route
 app.use('/api/category', categoryRoutes);

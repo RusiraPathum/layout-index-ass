@@ -11,6 +11,26 @@ router.get("/view", (req, res) => {
   });
 });
 
+//singale category
+router.get("/view/:id", (req, res) => {
+  const query = "SELECT * FROM category WHERE id = ?";
+
+  const catId = req.params.id;
+
+  db.query(query, [catId], (err, data) => {
+    if (err) return res.json(err);
+
+    var ob = {
+      "id":data[0].id,
+      "name":data[0].name,
+      "description":data[0].description,
+    }
+
+    return res.json(ob);
+  });
+});
+
+
 //category create
 router.post("/create", (req, res) => {
   const query = "INSERT INTO category (`name`, `description`) VALUES (?)";
@@ -34,7 +54,7 @@ router.put("/edit/:id", (req, res) => {
   const catId = req.params.id;
 
   const data = [req.body.name, req.body.des];
-
+  
   db.query(query, [...data, catId], (err, data) => {
     if (err) return res.json(err);
     return res.json({
