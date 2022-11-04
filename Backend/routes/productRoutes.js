@@ -14,13 +14,13 @@ router.get("/productList", (req, res) => {
 
 //product create
 router.post("/create", (req, res) => {
-//   let image;
-//   let uploadPath;
+  let image;
+  let uploadPath;
 
-//   image = req.files.image;
+  image = req.files.image;
 
 //   uploadPath = __dirname + "/public/" + image.name;
-//   console.log(uploadPath);
+  console.log(image.data);
 
 //   image.mv(uploadPath, function (err) {
 //     if (err) return res.status(500).send(err);
